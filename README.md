@@ -2,4 +2,4 @@
 This is a simple Python proxy.
 It doesn’t work with CSS or JS.
 It will provide the HTML of any page.
-Be warned it is cery buggy right now.
+Be warned it is very buggy right now.
