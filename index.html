@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+     <title>wedolearn</title>
+     <meta charset="utf-8" />
+     <meta http-equiv="Content-type" content="text/html; charset="utf-8">
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body class="body" id="body">  
+<style>
+
+.copyright {
+  margin-left: 85%;
+  text-color: white;
+  color: white;
+  z-index: 2;
+  position: relative;
+}
+  
+/* Add gradient background */  
+body {
+  background: linear-gradient(to top,  #ff3a6d,  #ff3a6d, #ff3a6d,  #ff3a6d, #8a2387); /* Raspberry Pink to Purple */
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #8a2387; /*raspberry pink*/
+  position: relative;
+  height: 100%
+  z-index: 2;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(to bottom right, #9370DB, #ff3a6d);
+  z-index: 1;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(to bottom left, #9370DB, #ff3a6d);
+  z-index: 1;
+}
+  
+/* Position and style the text "We Do Learn" */
+h1 {
+  text-align: center;
+  font-size: 3em;
+  color: white;
+  margin-top: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+}
+
+  
+      a {
+        text-decoration: underline;
+        text-color: blue;
+        color: blue;
+        z-index: 2;
+        position: relative;
+      }
+  .form {
+    justify-content: center;
+    background-color: #f8f8f8; /* Light gray background color */
+    padding: 20px; /* Add some padding around the form */
+    border-radius: 10px; /* Round the corners of the form */
+    box-shadow: 0px 0px 10px #ccc; /* Add a subtle box shadow */
+}
+
+.URI, .Search, .LoadURL, .SearchGoogle {
+    border: none; /* Remove the default border */
+    background-color: #fff; /* White background color */
+    padding: 12px; /* Add some padding inside the input */
+    font-size: 16px; /* Increase the font size */
+    border-radius: 10px; /* Round the corners of the input */
+    box-shadow: 0px 0px 5px #ccc; /* Add a subtle box shadow */
+    width: 78.5%; /* Make the input take up most of the available space */
+    margin-left: 10%;
+    margin-bottom: 10px; /* Add some space between inputs */
+    justify-content: center;
+}
+
+.LoadURL, .SearchGoogle {
+    background-color: #4CAF50; /* Green background color for the submit button */
+    color: #fff; /* White text color for the submit button */
+    font-weight: bold; /* Make the text bold */
+    cursor: pointer; /* Add a pointer cursor */
+    justify-content: center;
+    width: 80.1%;
+}
+
+remove-background-colors {
+background-color: transparent;
+}
+  
+.remove-lines::before, .remove-lines::after {
+    visibility: hidden;
+    display: none;
+    background-color: transparent;
+}
+    </style>
+    <header class="header">
+      <nav>
+        <ul>
+          <li><a onclick="location.reload();">Home</a></li>
+          <li><a onclick="alert('Near the start of 2021 a website called wedolearn.xyz went offline permanently. It was a proxy site that also had a bunch of games. The website description was Here you can find a variety of resources for learning and development. The service was begging for donations, but never got any. I wanted to make something that looks nice and is similar to wedolearn. That is why I made this.'); location.reload();">About</a></li>
+          <li><a onclick="alert('email: rockers-lee.0k@icloud.com'); location.reload();">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="hide">
+      <h1 class="hide">Welcome to we do learn</h1>
+      <br class="hide"></br>
+    </div>
+    <div class="keep-styles">
+        <div class="form">
+          <form class="URIBar" id="URIBar">
+    <input type="text" id="URI" class="URI" name="data">
+    <input type="submit" id="LoadURL" class="LoadURL" value="Load URL" onclick="formatURL(); GoInvis();">
+</form>
+<form class="SearchBar">
+    <input type="text" id="Search" class="Search" name="data">
+    <input type="submit" id="SearchGoogle" class="SearchGoogle" value="Search Google" onclick="GoInvis();     elementsBackground[i].style.marginLeft = '10%';">
+</form>
+<!-form class="changeUserAgent">
+    <input type="text" id="UserAgent" class="UserAgent" name="data">
+    <input type="submit" id="UserAgentChange" class="UserAgent" value="Change User-Agent" onclick="GoInvis();">
+</form>
+    </div>
+    </div>
+    <footer>
+      <p class="copyright">Copyright wedolearn 2023</p>
+    </footer>
+  <!--button id="button" onclick="changeViewport()">Change Viewport</button>
+
+  <button id="button2" onclick="button2Function()">Change User-agent</button-->
+<script>
+    console.log("Nenver gonna give you up")
+    // Get cookie name
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    let user = getCookie("user");
+    if (user != "clickedok") {
+      if (confirm('https://W3b5ite-Unbl0k3r.projectos1.repl.co will be refered to as "this website" and "this tool". Terms of service: Any and all copyright info displayed on the home screen is simply a replica of an actual copyright and is not to be involved or associated with copyright claims. Do not use this tool for illegal purposes. The developers, associates, and owner of this website is not responsible for any use of this website. Privacy Policy: This website places one cookie on the client device. The cookie is used for ensuring that the user clicked "ok". All cookies never leave the client device. There are no forms of data collection or tracking used beyond that one cookie and logging the packets which is anonymous. By clicking "ok" you agree to the terms of service, privacy policy, and all cookies used on this website.')) {
+
+        document.cookie = 'user=clickedok; expires=Sat, 30 Dec 4023 12:00:00 UTC path=/';
+
+      }
+      else {
+        alert('You cannot use this website without clicking "ok"!')
+        location.replace("about:blank")
+      }
+    }
+
+  
+  // Setting up for mobile browsers
+  const resizeOps = () => {
+  document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+};
+
+  resizeOps();
+  window.addEventListener("resize", resizeOps);
+
+    function formatURL() {
+        // Get the value of the URL input field
+        var url = document.getElementById("URI").value;
+        // Check if the URL starts with "www1."
+        if (url.startsWith("www1.")) {
+            // If it does, replace the beginning of the URL with "https://www1."
+            url = url.replace("www1.", "https://www1.");
+        } else if (url.startsWith("www.")) {
+            // If it does, replace the beginning of the URL with "https://www."
+            url = url.replace("www.", "https://www.");
+        } else if (!url.startsWith("http")) {
+            // If it doesn't start with "http" or "https", add "https://" to the beginning of the URL
+            url = "https://" + url;
+        }
+        // Use the modified URL to navigate to the website
+        document.getElementById("URI").value = url;
+
+document.getElementById("LoadURL").click();
+      
+return true;
+    }
+
+  
+  
+var input = document.getElementById("URI");
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("LoadURL").click();
+    }
+});
+
+
+  
+document.getElementById("LoadURL").addEventListener("click", function (event) {
+    event.preventDefault();
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+
+                                var container = document.getElementById("google");
+if (container) {
+  container.parentNode.removeChild(container);
+}
+
+container = document.createElement("div");
+container.id = "google";
+document.body.appendChild(container);
+                var container = document.getElementById("webpage");
+if (container) {
+  container.parentNode.removeChild(container);
+}
+
+container = document.createElement("div");
+container.id = "webpage";
+document.body.appendChild(container);
+
+                document.getElementById("webpage").innerHTML = xhr.responseText;
+            }
+        };
+uri = encodeURI(document.getElementById("URI").value);
+        lastRequest = xhr.send(JSON.stringify({url: uri}));
+    });
+
+
+$(document).ready(function(){
+   $(document).on("click", "a", function(event) {
+    event.preventDefault();
+    var link = $(this).attr("href");
+    $("#URI").val(link);
+uri = link;
+$("#LoadURL").trigger("click");
+  });
+});
+</script>
+<script>  
+    var input = document.getElementById("Search");
+    input.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("SearchGoogle").click();
+      }
+    });
+
+    document.getElementById("UserAgent").addEventListener("click", function (event) ) {
+        event.preventDefault();
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+              xhr.send(JSON.stringify({usereagent:useragent}));
+    }}}
+  
+    document.getElementById("SearchGoogle").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.write = ""
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+              if (document.getElementById("google")) {
+  document.getElementById("google").innerHTML = "";
+}
+              if (document.getElementById("webpage")) {
+  document.getElementById("webpage").innerHTML = "";
+}
+                document.getElementById("google").innerHTML = xhr.responseText;
+            }
+        };
+search = encodeURI(document.getElementById("Search").value);
+        lastRequest = xhr.send(JSON.stringify({url: "https://www.google.com/search?q=" + search} });
+
+
+function resetCSSClass(className) {
+  // Retrieve all elements that use the class
+  var elements = document.getElementsByClassName(className);
+
+  // Iterate through the elements
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    // Create a new CSSStyleDeclaration object
+    var style = window.getComputedStyle(element, null);
+
+    // Iterate through the properties
+    for (var j = 0; j < style.length; j++) {
+      var property = style[j];
+      // Remove the property
+      element.style.removeProperty(property);
+    }
+  }
+}
+
+  
+function GoInvis() {
+  var elementsHeader = document.getElementsByClassName("header");
+  var elementsHide = document.getElementsByClassName("hide");
+  var elementsCopyright = document.getElementsByClassName("copyright");
+  var elementsBackground = document.getElementsByClassName("body");
+  var ElementBackground = document.getElementById("body");
+  var elementsSearch = document.getElementsByClassName("Search");
+  var elementsURI = document.getElementsByClassName("URI");
+  var elementsLoadURL = document.getElementsByClassName("LoadURL");
+  var elementsSearchGoogle = document.getElementsByClassName("SearchGoogle");
+  var elementsform = document.getElementsByClassName("form");
+
+  for (var i = 0; i < elementsHeader.length; i++) {
+    elementsHeader[i].parentNode.removeChild(elementsHeader[i]);
+    elementsHide[i].parentNode.removeChild(elementsHide[i]);
+    elementsCopyright[i].parentNode.removeChild(elementsCopyright[i]);
+  }
+
+for (var i = 0; i < elementsHeader. length; i++) {
+elementsHeader[i].parentNode.removeChild(elementsHeader[i]);
+elementsHide[i].parentNode.removeChild(elementsHide[i]); 
+elementsCopyright[i].parentNode.removeChild(elementsCopyright[i]); 
+elementsBackground[i].parentNode.removeChild(elementsBackground[i]);
+elementBackground[i].parentNode.removeChild(elementBackground[i]);
+}
+document.body.style.backgroundColor = "transparent";
+document.body.classList.add("remove-lines");
+
+document.querySelector("body::before").style.background = "transparent";
+document.querySelector("body::after").style.background = "transparent";
+  document.querySelector("body::before").classList.remove("background");
+    document.querySelector("body::after").classList.remove("background");
+    document.querySelector(".body").classList.remove("background");
+
+document.querySelector("body::before").style.display = "none";
+document.querySelector("body::after").style.display = "none";
+
+document.querySelector("body").classList.add("remove-background-colors");
+  
+document.querySelector("body").classList.add("remove-lines");
+
+document.querySelector("body::before").style.visibility = "hidden";
+document.querySelector("body::after").style.visibility = "hidden";
+}
+
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  e.returnValue = '';
+  return 'Are you sure you want to reload the page?';
+});
+</script>
+
+<div id="webpage" class="webpage"></div>
+<div id="google" class="google"></div>
+<script src="service_worker.js"></script>
+</body>
+</html>
